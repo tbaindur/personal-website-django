@@ -1,0 +1,25 @@
+body {
+ font-family: 'Lato', sans-serif;
+}
+
+.navbar .navbar-nav .nav-item a.nav-link:hover, .navbar-nav .nav-item a.nav-link.active {
+    font-weight: 700;
+}
+
+.navbar .navbar-brand {
+    font-family: 'Dancing Script', cursive;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.navbar .navbar-brand:hover {
+    font-weight: 700;
+}
+
+div.section-heading h5{
+    font-weight: 700;
+}
+
+.intro-name-header {
+    font-weight: 700;
+}

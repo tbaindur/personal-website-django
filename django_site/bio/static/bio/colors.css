@@ -1,0 +1,82 @@
+/* Color Pallette */
+body {
+    --navbar-bg: #f9a404;
+    --navbar-text: #1a2c38;
+    --accent-1: #4bb3fd;
+    --bg-dark-1: #1a2c38;
+    --bg-light-1: #335970;
+    --icon-white: #EFEBEB;
+    --bg-tile-1: #EFEBEB;
+    --accent-red: #AD343E;
+}
+
+/*End Color Pallette */
+
+/* Navbar */
+
+nav.bg-custom-dark {
+    background-color: var(--navbar-bg);
+}
+
+.navbar button.navbar-toggler {
+    color: var(--navbar-text);
+}
+
+.navbar-nav .nav-item a.nav-link {
+    color: var(--navbar-text);
+}
+
+.navbar .navbar-brand {
+    color: var(--navbar-text);
+}
+
+.navbar .navbar-brand:hover {
+    color: var(--navbar-text);
+}
+
+/* Page Content */
+
+.section-heading-icon {
+    color: var(--icon-white);
+}
+
+.section-heading {
+    color: var(--accent-1);
+}
+
+.fab {
+    color: var(--icon-white)
+}
+.fab:hover {
+    color: var(--accent-1);
+}
+
+#connect a {
+    text-decoration: none;
+}
+
+a.social-icon {
+    color: #000000 !important;
+    text-decoration: none;
+}
+
+div.section-light {
+ background-color: var(--bg-light-1);
+}
+
+div.section-dark {
+ background-color: var(--bg-dark-1);
+}
+
+.education-tile {
+  color: var(--icon-white);
+}
+
+.experience-tile {
+ background-color: var(--bg-tile-1);
+ color: var(--bg-dark-1);
+}
+
+#intro {
+    color: var(--icon-white);
+}

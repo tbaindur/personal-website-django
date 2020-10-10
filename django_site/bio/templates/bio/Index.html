@@ -1,0 +1,210 @@
+{% extends "bio/bs_base.html" %}
+{% block content %}
+
+<!-- Start INTRO Section -->
+<div class="container-fluid section section-dark" id="intro">
+    <div class="row py-3">
+        <div class="col-md-8 justify-content-center my-auto mx-3">
+            <h2 class="intro-name-header text-left">{{ intro.title }}</h2>
+            <br>
+            <p class="intro-bio text-left">{{ intro.bio }}</p>
+            <a href="/resume" class="btn btn-dark"><i class="fas fa-download fa-1x pr-1"></i>  Resume</a>
+            <div class="pt-3 connect"> 
+                <a href="{{ intro.linkedin }}" class="social-icon">
+                    <i class="fab fa-linkedin fa-2x px-1"></i>
+                </a>
+                <a href="{{ intro.facebook }}" class="social-icon">
+                    <i class="fab fa-facebook fa-2x px-1"></i>
+                </a>
+                <a href="{{ intro.instagram }}" class="social-icon">
+                    <i class="fab fa-instagram-square fa-2x px-1"></i>
+                </a>
+                <a href="{{ intro.github }}" class="social-icon">
+                    <i class="fab fa-github fa-2x px-1"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-md justify-content-center">
+            <img src="" class="intro-profile-pic"/>
+        </div>
+
+    </div>
+</div>
+<!-- End INTRO Section -->
+
+
+<!-- Start EDUCATION Section -->
+<div class="container-fluid section section-light" id="education">
+    <div class="section-heading-group mx-auto">
+        <div class="row section-heading-icon justify-content-center">
+            <i class="fas fa-graduation-cap fa-2x"></i>
+        </div>
+        <div class="section-heading row justify-content-center pb-2">
+            <h5>EDUCATION</h5>
+        </div>
+    </div>
+    <div class="row justify-content-center pb-5">
+        {% for e in education %}
+        <div class="col-md">
+            <div class="education-tile">
+                <h3 class="text-center">{{e.title}}</h3>
+                <h6 class="text-center">{{e.credential}} - {{e.year}}</h6>
+                <p class="text-center">{{e.summary}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- End EDUCATION Section -->
+
+<!-- Start EXPERIENCE Section -->
+<div class="container-fluid section section-dark" id="experience">
+    <div class="section-heading-group mx-auto py-2">
+        <div class="row section-heading-icon justify-content-center">
+            <i class="fas fa-project-diagram fa-2x"></i>
+        </div>
+        <div class="section-heading row justify-content-center pb-2">
+            <h5>EXPERIENCE</h5>
+        </div>
+    </div>
+    <div class="card-deck pb-5">
+        {% for e in experience %}
+        <div class="card bg-light">
+            <div class="card-body text-center d-flex flex-column">
+                <h4 class="card-title">{{ e.title }}</h4>
+                <h6 class="card-text">{{ e.organization }} | {{ e.period }}</h6>
+                <btn class="btn btn-dark mt-auto" data-toggle="modal" data-target="#{{ e.html_id }}">See more</btn>
+            </div>
+        </div>
+
+        <div class="modal fade modal-detail" id="{{ e.html_id }}">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{ e.title }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <dl>
+                            {% for tag, value in e.details %}
+                                <{{ tag }}>{{ value }}</{{ tag }}>
+                            {% endfor %}
+                        </dl>
+                    </div>
+                    <div class="modal-footer">
+                        <btn class="btn btn-dark" data-dismiss="modal">Close</btn>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}    
+    </div>
+</div>
+<!-- End EXPERIENCE Section -->
+
+<!-- Start PROJECTS Section -->
+<div class="container-fluid section section-light" id="projects">
+    <div class="section-heading-group mx-auto py-2">
+        <div class="row section-heading-icon justify-content-center">
+            <i class="fas fa-project-diagram fa-2x"></i>
+        </div>
+        <div class="section-heading row justify-content-center pb-2">
+            <h5>ACADEMIC PROJECTS</h5>
+        </div>
+    </div>
+    <div class="card-columns pb-5">
+        {% for p in projects %}
+        <div class="card bg-light">
+            <div class="card-body text-center d-flex flex-column">
+                <h4 class="card-title">{{ p.title }}</h4>
+                <h6 class="card-text">{{ p.place }} | {{ p.time }}</h6>
+                <btn class="btn btn-dark mt-auto" data-toggle="modal" data-target="#{{ p.html_id }}">See more</btn>
+            </div>
+        </div>
+        <div class="modal fade modal-detail" id="{{ p.html_id }}">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{ p.title }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <dl>
+                            {% for tag, value in p.details %}
+                                <{{ tag }}>{{ value }}</{{ tag }}>
+                            {% endfor %}
+                        </dl>
+                    </div>
+                    <div class="modal-footer">
+                        <btn class="btn btn-dark" data-dismiss="modal">Close</btn>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+</div>
+<!-- End PROJECTS Section -->
+
+
+<!-- Start SKILLS Section -->
+<div class="container-fluid section section-dark py-3" id="skills">
+    <div class="section-heading-group mx-auto py-2">
+        <div class="section-heading-icon row justify-content-center">
+            <i class="fas fa-tools fa-2x"></i>
+        </div>
+        <div class="section-heading row justify-content-center pb-2">
+            <h5>SKILLS</h5>
+        </div>
+    </div>
+</div>
+<!-- End SKILLS Section -->
+
+
+<!-- Start INTERESTS Section -->
+<div class="container-fluid section section-light py-3" id="interests">
+    <div class="section-heading-group mx-auto py-2">
+        <div class="section-heading-icon row justify-content-center">
+            <i class="fas fa-dumbbell fa-2x"></i>
+        </div>
+        <div class="section-heading row justify-content-center pb-2">
+            <h5>INTERESTS</h5>
+        </div>
+    </div>
+</div>
+<!-- End INTERESTS Section -->
+
+
+<!-- Start CONNECT Section -->
+<div class="container-fluid section section-dark py-3" id="connect">
+    <div class="section-heading-group mx-auto py-2">
+        <div class="section-heading-icon row justify-content-center">
+            <i class="fas fa-users fa-2x"></i>
+        </div>
+        <div class="section-heading row justify-content-center pb-2">
+            <h5>CONNECT</h5>
+        </div>
+    </div>
+    <div class="row justify-content-center py-2">
+        <div class="col-3 text-center">
+            <a href="https://www.linkedin.com/in/tejasbaindur/" class="social-icon">
+                <i class="fab fa-linkedin fa-4x"></i>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a href="https://www.facebook.com/tejasbaindur" class="social-icon">
+                <i class="fab fa-facebook fa-4x"></i>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a href="https://instagram.com/tejas_baindur" class="social-icon">
+                <i class="fab fa-instagram-square fa-4x"></i>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a href="#" class="social-icon">
+                <i class="fab fa-github fa-4x"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- End CONNECT Section -->
+
+{% endblock content %}
