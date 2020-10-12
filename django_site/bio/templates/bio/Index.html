@@ -8,7 +8,7 @@
             <h2 class="intro-name-header text-left">{{ intro.title }}</h2>
             <br>
             <p class="intro-bio text-left">{{ intro.bio }}</p>
-            <a href="/resume" class="btn btn-dark"><i class="fas fa-download fa-1x pr-1"></i>  Resume</a>
+            <a href="{% url 'bio-resume-download' %}" class="btn btn-dark"><i class="fas fa-download fa-1x pr-1"></i>  Resume</a>
             <div class="pt-3 connect"> 
                 <a href="{{ intro.linkedin }}" class="social-icon">
                     <i class="fab fa-linkedin fa-2x px-1"></i>
@@ -47,8 +47,8 @@
         {% for e in education %}
         <div class="col-md">
             <div class="education-tile">
-                <h3 class="text-center">{{e.title}}</h3>
-                <h6 class="text-center">{{e.credential}} - {{e.year}}</h6>
+                <h3 class="text-center">{{e.degree}}</h3>
+                <h6 class="text-center">{{e.major}}</h6>
                 <p class="text-center">{{e.summary}}</p>
             </div>
         </div>
@@ -72,23 +72,23 @@
         <div class="card bg-light">
             <div class="card-body text-center d-flex flex-column">
                 <h4 class="card-title">{{ e.title }}</h4>
-                <h6 class="card-text">{{ e.organization }} | {{ e.period }}</h6>
-                <btn class="btn btn-dark mt-auto" data-toggle="modal" data-target="#{{ e.html_id }}">See more</btn>
+                {% if e.end_date is not None %}
+                    <h6 class="card-text">{{ e.company.name }} | {{ e.start_date|date:'M Y' }} to {{ e.end_date|date:'M Y' }}</h6>
+                {% else %}
+                    <h6 class="card-text">{{ e.company.name }} | {{ e.start_date|date:'M Y' }} to Present</h6>
+                {% endif %}
+                <btn class="btn btn-dark mt-auto" data-toggle="modal" data-target="#exp-{{ e.start_date|date:'Y-n' }}">See more</btn>
             </div>
         </div>
 
-        <div class="modal fade modal-detail" id="{{ e.html_id }}">
+        <div class="modal fade modal-detail" id="exp-{{ e.start_date|date:'Y-n' }}">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">{{ e.title }}</h4>
                     </div>
                     <div class="modal-body">
-                        <dl>
-                            {% for tag, value in e.details %}
-                                <{{ tag }}>{{ value }}</{{ tag }}>
-                            {% endfor %}
-                        </dl>
+                        {{ e.details | safe }}
                     </div>
                     <div class="modal-footer">
                         <btn class="btn btn-dark" data-dismiss="modal">Close</btn>
@@ -116,22 +116,22 @@
         <div class="card bg-light">
             <div class="card-body text-center d-flex flex-column">
                 <h4 class="card-title">{{ p.title }}</h4>
-                <h6 class="card-text">{{ p.place }} | {{ p.time }}</h6>
-                <btn class="btn btn-dark mt-auto" data-toggle="modal" data-target="#{{ p.html_id }}">See more</btn>
+                {% if p.end_date is not None %}
+                    <h6 class="card-text">{{ p.organization.name }} | {{ p.start_date|date:'M Y' }} to {{ p.end_date|date:'M Y' }}</h6>
+                {% else %}
+                    <h6 class="card-text">{{ p.organization.name }} | {{ p.start_date|date:'M Y' }} to Present</h6>
+                {% endif %}
+                <btn class="btn btn-dark mt-auto" data-toggle="modal" data-target="#project-{{ p.start_date|date:'Y-n' }}">See more</btn>
             </div>
         </div>
-        <div class="modal fade modal-detail" id="{{ p.html_id }}">
+        <div class="modal fade modal-detail" id="project-{{ p.start_date|date:'Y-n' }}">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">{{ p.title }}</h4>
                     </div>
                     <div class="modal-body">
-                        <dl>
-                            {% for tag, value in p.details %}
-                                <{{ tag }}>{{ value }}</{{ tag }}>
-                            {% endfor %}
-                        </dl>
+                            {{ p.details | safe }}
                     </div>
                     <div class="modal-footer">
                         <btn class="btn btn-dark" data-dismiss="modal">Close</btn>

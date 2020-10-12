@@ -1,4 +1,5 @@
 from django.db import models
+from tinymce.models import HTMLField
 
 # Create your models here.
 
@@ -30,7 +31,7 @@ class Education(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     summary = models.CharField(max_length=200)
-    details = models.TextField()
+    details = HTMLField()
 
     def __str__(self):
         return self.degree + " in " + self.major + " from " + self.university.name
@@ -42,7 +43,7 @@ class Experience(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     summary = models.CharField(max_length=200)
-    details = models.TextField()
+    details = HTMLField()
 
     def __str__(self):
         return self.title + " @ " + self.company.name
@@ -54,7 +55,7 @@ class Project(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     summary = models.CharField(max_length=200)
-    details = models.TextField()
+    details = HTMLField()
     type = models.CharField(max_length=20)
 
     def __str__(self):
