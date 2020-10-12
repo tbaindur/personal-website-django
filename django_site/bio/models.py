@@ -1,7 +1,28 @@
 from django.db import models
 from tinymce.models import HTMLField
+from django.contrib.auth.models import User
+
+import os
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 
 # Create your models here.
+
+class Intro(models.Model):
+    user = models.OneToOneField(User, on_delete=models.PROTECT, default=1)
+    name = models.CharField(max_length=40)
+    headline = models.CharField(max_length=100)
+    summary = HTMLField()
+    profile_pic = models.ImageField(default="intro_pics/default_profile_pic.jpg", upload_to='intro_pics')
+    cover_pic = models.ImageField(null=True, upload_to='intro_pics')
+    resume = models.FileField(upload_to='docs', null=True)
+    linkedin_url = models.URLField(null=True)
+    github_url = models.URLField(null=True)
+    instagram_url = models.URLField(null=True)
+    facebook_url = models.URLField(null=True)
+
+    def __str__(self):
+        return f'{ self.name } Intro'
 
 
 class Organization_type(models.Model):
@@ -56,10 +77,18 @@ class Project(models.Model):
     end_date = models.DateField()
     summary = models.CharField(max_length=200)
     details = HTMLField()
-    type = models.CharField(max_length=20)
+
+    PROJECT_TYPE_CHOICES = [
+        ('Academic', 'Academic'),
+        ('Professional', 'Professional'),
+        ('Independent', 'Independent'),
+        ('Hobby', 'Hobby')
+    ]
+    type = models.CharField(max_length=20, choices=PROJECT_TYPE_CHOICES)
 
     def __str__(self):
         return self.title + " @ " + self.organization.name
+
 
 class Skill_type(models.Model):
     name = models.CharField(max_length=60)
@@ -72,7 +101,13 @@ class Skill_type(models.Model):
 class Skill(models.Model):
     type = models.ForeignKey(Skill_type, on_delete=models.SET_DEFAULT, default=0)
     name = models.CharField(max_length=30)
-    proficiency_level = models.IntegerField()
+
+    PROFICIENCY_LEVEL_CHOICES = [
+        ('Basic', 'Basic'),
+        ('Intermediate', 'Intermediate'),
+        ('Expert', 'Expert')
+    ]
+    proficiency_level = models.IntegerField(choices=PROFICIENCY_LEVEL_CHOICES, null=True)
 
     def __str__(self):
         return self.name + " - " + self.type.name

@@ -42,8 +42,8 @@
 <body>
 <!-- Navigation Bar -->
 <header class="container-fluid">
-    <nav class="navbar navbar-expand-md bg-custom-dark fixed-top justify-content-end">
-        <a class="navbar-brand" href="#">TB | Blog</a>
+    <nav class="navbar navbar-expand-md bg-custom-dark fixed-top justify-content-end" id="profile-navbar">
+        <a class="navbar-brand" href="#">TB | Profile</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarItemsList" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -91,10 +91,12 @@
     </nav>
 </header>
 
-    <div class="page-content p-0 m-0">{% block content %}{% endblock content %}</div>
+    <div class="page-content p-0 m-0" data-spy="scroll" data-target="#profile-navbar" data-offset="0">
+        {% block content %}{% endblock content %}
+    </div>
 
 <footer class="container-fluid">
-    <p class="text-right">Built with Python v3.7 in Flask</p>
+    <p class="text-right">Built with Django 3.1</p>
 </footer>
 </body>
 </html>

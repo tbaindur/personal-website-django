@@ -5,27 +5,28 @@
 <div class="container-fluid section section-dark" id="intro">
     <div class="row py-3">
         <div class="col-md-8 justify-content-center my-auto mx-3">
-            <h2 class="intro-name-header text-left">{{ intro.title }}</h2>
+            <h2 class="intro-name-header text-left">{{ intro.name }}</h2>
+            <h6 class="intro-headline text-left">{{ intro.headline }}</h6>
             <br>
-            <p class="intro-bio text-left">{{ intro.bio }}</p>
-            <a href="{% url 'bio-resume-download' %}" class="btn btn-dark"><i class="fas fa-download fa-1x pr-1"></i>  Resume</a>
+            <p class="intro-bio text-left">{{ intro.summary|safe }}</p>
+            <a href="{{ intro.resume.url }}" class="btn btn-dark"><i class="fas fa-download fa-1x pr-1"></i>  Resume</a>
             <div class="pt-3 connect"> 
-                <a href="{{ intro.linkedin }}" class="social-icon">
+                <a href="{{ intro.linkedin_url }}" class="social-icon">
                     <i class="fab fa-linkedin fa-2x px-1"></i>
                 </a>
-                <a href="{{ intro.facebook }}" class="social-icon">
+                <a href="{{ intro.facebook_url }}" class="social-icon">
                     <i class="fab fa-facebook fa-2x px-1"></i>
                 </a>
-                <a href="{{ intro.instagram }}" class="social-icon">
+                <a href="{{ intro.instagram_url }}" class="social-icon">
                     <i class="fab fa-instagram-square fa-2x px-1"></i>
                 </a>
-                <a href="{{ intro.github }}" class="social-icon">
+                <a href="{{ intro.github_url }}" class="social-icon">
                     <i class="fab fa-github fa-2x px-1"></i>
                 </a>
             </div>
         </div>
         <div class="col-md justify-content-center">
-            <img src="" class="intro-profile-pic"/>
+            <img src="{{ intro.profile_pic.url }}" class="intro-profile-pic"/>
         </div>
 
     </div>
@@ -88,7 +89,7 @@
                         <h4 class="modal-title">{{ e.title }}</h4>
                     </div>
                     <div class="modal-body">
-                        {{ e.details | safe }}
+                        {{ e.details|safe }}
                     </div>
                     <div class="modal-footer">
                         <btn class="btn btn-dark" data-dismiss="modal">Close</btn>
@@ -145,7 +146,7 @@
 
 
 <!-- Start SKILLS Section -->
-<div class="container-fluid section section-dark py-3" id="skills">
+<div class="container-fluid section section-dark" id="skills">
     <div class="section-heading-group mx-auto py-2">
         <div class="section-heading-icon row justify-content-center">
             <i class="fas fa-tools fa-2x"></i>
@@ -173,7 +174,7 @@
 
 
 <!-- Start CONNECT Section -->
-<div class="container-fluid section section-dark py-3" id="connect">
+<!-- <div class="container-fluid section section-dark py-3" id="connect">
     <div class="section-heading-group mx-auto py-2">
         <div class="section-heading-icon row justify-content-center">
             <i class="fas fa-users fa-2x"></i>
@@ -204,7 +205,7 @@
             </a>
         </div>
     </div>
-</div>
+</div> -->
 <!-- End CONNECT Section -->
 
 {% endblock content %}
