@@ -10,6 +10,9 @@ pylint = "*"
 django = "*"
 django-tinymce = "*"
 pillow = "*"
+django-storages = "*"
+google-auth = "*"
+google-cloud-storage = "*"
 
 [requires]
 python_version = "3.7"

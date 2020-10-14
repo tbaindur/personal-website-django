@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from google.oauth2 import service_account
 
 # Custom variables
 #DJANGO_SETTINGS_MODULE='testtinymce.settings'
@@ -120,6 +121,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Django-storages configuration
+
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    os.path.join(BASE_DIR, "gcs_keys.json"))
+
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'tejas-website'
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
