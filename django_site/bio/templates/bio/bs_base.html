@@ -1,5 +1,6 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -20,7 +21,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'bio/colors.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'bio/fonts.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'bio/model.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bio/layout.css' %}">
 
 
     <!-- Optional JavaScript -->
@@ -39,7 +40,7 @@
 
 </head>
 
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="100">
 <!-- Navigation Bar -->
 <header class="container-fluid">
     <nav class="navbar navbar-expand-md bg-custom-dark fixed-top justify-content-end" id="profile-navbar">
@@ -63,14 +64,15 @@
                 <a class="nav-link" href="#projects" id="navProjects">PROJECTS</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#skills" id="navSkills">SKILLS & CERTS</a>
+                <a class="nav-link" href="#skills" id="navSkills">SKILLS</a>
             </li>
+            <!--
             <li class="nav-item">
                 <a class="nav-link" href="#interests" id="navInterests">INTERESTS</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#connect" id="navConnect">CONNECT</a>
-            </li>
+            </li> -->
             <script>
                 // Get the navbar container element
                 var navbarContainer = document.getElementById("navbarItemsList");
@@ -91,7 +93,7 @@
     </nav>
 </header>
 
-    <div class="page-content p-0 m-0" data-spy="scroll" data-target="#profile-navbar" data-offset="0">
+    <div class="page-content p-0 m-0">
         {% block content %}{% endblock content %}
     </div>
 
@@ -99,4 +101,5 @@
     <p class="text-right">Built with Django 3.1</p>
 </footer>
 </body>
+
 </html>

@@ -6,6 +6,7 @@ import os
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
+
 # Create your models here.
 
 class Intro(models.Model):
@@ -16,10 +17,10 @@ class Intro(models.Model):
     profile_pic = models.ImageField(default="intro_pics/default_profile_pic.jpg", upload_to='intro_pics')
     cover_pic = models.ImageField(null=True, upload_to='intro_pics')
     resume = models.FileField(upload_to='docs', null=True)
-    linkedin_url = models.URLField(null=True)
-    github_url = models.URLField(null=True)
-    instagram_url = models.URLField(null=True)
-    facebook_url = models.URLField(null=True)
+    linkedin_url = models.URLField(null=True, blank=True, default="#")
+    github_url = models.URLField(null=True, blank=True, default="#")
+    instagram_url = models.URLField(null=True, blank=True, default="#")
+    facebook_url = models.URLField(null=True, blank=True, default="#")
 
     def __str__(self):
         return f'{ self.name } Intro'
@@ -38,7 +39,7 @@ class Organization(models.Model):
     city = models.CharField(max_length=20)
     state = models.CharField(max_length=20)
     country = models.CharField(max_length=20)
-    summary = models.CharField(max_length=200)
+    summary = models.CharField(max_length=200, blank=True, null=True)
     website = models.URLField()
 
     def __str__(self):
@@ -50,8 +51,8 @@ class Education(models.Model):
     degree = models.CharField(max_length=40)
     major = models.CharField(max_length=60)
     start_date = models.DateField()
-    end_date = models.DateField()
-    summary = models.CharField(max_length=200)
+    end_date = models.DateField(blank=True, null=True)
+    summary = models.CharField(max_length=200, blank=True, null=True)
     details = HTMLField()
 
     def __str__(self):
@@ -62,8 +63,8 @@ class Experience(models.Model):
     company = models.ForeignKey(Organization, on_delete=models.PROTECT)
     title = models.CharField(max_length=150)
     start_date = models.DateField()
-    end_date = models.DateField()
-    summary = models.CharField(max_length=200)
+    end_date = models.DateField(blank=True, null=True)
+    summary = models.CharField(max_length=200, blank=True, null=True)
     details = HTMLField()
 
     def __str__(self):
@@ -74,8 +75,8 @@ class Project(models.Model):
     organization = models.ForeignKey(Organization, on_delete=models.PROTECT)
     title = models.CharField(max_length=150)
     start_date = models.DateField()
-    end_date = models.DateField()
-    summary = models.CharField(max_length=200)
+    end_date = models.DateField(blank=True, null=True)
+    summary = models.CharField(max_length=200, blank=True, null=True)
     details = HTMLField()
 
     PROJECT_TYPE_CHOICES = [
@@ -84,7 +85,7 @@ class Project(models.Model):
         ('Independent', 'Independent'),
         ('Hobby', 'Hobby')
     ]
-    type = models.CharField(max_length=20, choices=PROJECT_TYPE_CHOICES)
+    type = models.CharField(max_length=20, choices=PROJECT_TYPE_CHOICES, blank=True, null=True)
 
     def __str__(self):
         return self.title + " @ " + self.organization.name
@@ -99,7 +100,7 @@ class Skill_type(models.Model):
 
 
 class Skill(models.Model):
-    type = models.ForeignKey(Skill_type, on_delete=models.SET_DEFAULT, default=0)
+    type = models.ForeignKey(Skill_type, on_delete=models.SET_NULL, null=True, related_name='skills')
     name = models.CharField(max_length=30)
 
     PROFICIENCY_LEVEL_CHOICES = [
@@ -107,7 +108,8 @@ class Skill(models.Model):
         ('Intermediate', 'Intermediate'),
         ('Expert', 'Expert')
     ]
-    proficiency_level = models.IntegerField(choices=PROFICIENCY_LEVEL_CHOICES, null=True)
+    proficiency_level = models.CharField(choices=PROFICIENCY_LEVEL_CHOICES, null=True, blank=True, max_length=20)
 
     def __str__(self):
         return self.name + " - " + self.type.name
+
