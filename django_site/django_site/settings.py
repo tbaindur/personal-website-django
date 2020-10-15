@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 from google.oauth2 import service_account
+import json
 
 # Custom variables
 #DJANGO_SETTINGS_MODULE='testtinymce.settings'
@@ -121,10 +122,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Django-storages configuration
+# Django-storages configuration for Google Cloud Storage
 
-GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    os.path.join(BASE_DIR, "gcs_keys.json"))
+if DEBUG:
+    GS_CREDENTIALS = service_account.Credentials.from_service_account_file(os.path.join(BASE_DIR, "gcs_keys.json"))
+else:
+    gs_service_account_credentials = json.loads(os.environ.get("GCS_SERVICE_ACCOUNT_CREDENTIALS"))
+    GS_CREDENTIALS = service_account.Credentials.from_service_account_info(gs_service_account_credentials)
+
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'tejas-website'
@@ -133,9 +138,17 @@ STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For Heroku
 STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)  # For Heroku
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # TinyMCE Config
+
+# Heroku config
