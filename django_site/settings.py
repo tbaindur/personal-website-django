@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from google.oauth2 import service_account
 import json
+import django_heroku
 
 # Custom variables
 #DJANGO_SETTINGS_MODULE='testtinymce.settings'
@@ -26,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ne-q+82c733xwzhnjqb1_l9z*19y=)rq(+j_uvo^-0jsjdijtz'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG_VALUE")
@@ -154,3 +155,4 @@ MEDIA_URL = '/media/'
 # TinyMCE Config
 
 # Heroku config
+django_heroku.settings(locals())
