@@ -144,9 +144,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For Heroku
 STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)  # For Heroku
+#STATICFILES_DIRS = (
+#    os.path.join(BASE_DIR, 'static'),
+#)  # For Heroku
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
