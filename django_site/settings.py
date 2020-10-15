@@ -29,9 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'ne-q+82c733xwzhnjqb1_l9z*19y=)rq(+j_uvo^-0jsjdijtz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG_VALUE")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tejas-django-site.herokuapp.com']
 
 
 # Application definition
