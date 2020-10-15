@@ -13,6 +13,7 @@ pillow = "*"
 django-storages = "*"
 google-auth = "*"
 google-cloud-storage = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
