@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('bio.urls')),
     path('tinymce/', include('tinymce.urls')),
-    path('ping/', views.ping, name='server-ping'),
+    path('ping', views.ping, name='server-ping'),
 ]
 
 if settings.DEBUG:
