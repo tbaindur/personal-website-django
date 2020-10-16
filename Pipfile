@@ -15,7 +15,6 @@ google-auth = "*"
 google-cloud-storage = "*"
 gunicorn = "*"
 django-heroku = "*"
-newrelic = "*"
 
 [requires]
 python_version = "3.7"
