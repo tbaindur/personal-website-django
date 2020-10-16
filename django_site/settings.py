@@ -34,6 +34,9 @@ DEBUG = (os.environ.get("DEBUG_VALUE") == "True")
 
 ALLOWED_HOSTS = ['tejas-django-site.herokuapp.com']
 
+if DEBUG:
+    ALLOWED_HOSTS += ['localhost']
+
 
 # Application definition
 

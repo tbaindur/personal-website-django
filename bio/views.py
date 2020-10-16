@@ -1,4 +1,4 @@
-from django.shortcuts import render, resolve_url
+from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
 
@@ -12,4 +12,5 @@ def home(request):
         'skill_types': Skill_type.objects.all()
     }
     return render(request, 'bio/Index.html', context)
+
 
