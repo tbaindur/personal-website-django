@@ -48,8 +48,9 @@
         {% for e in education %}
         <div class="col-md">
             <div class="education-tile">
-                <h3 class="text-center">{{e.degree}}</h3>
-                <h6 class="text-center">{{e.major}}</h6>
+                <h4 class="text-center">{{e.university.name}} - {{ e.end_date|date:'Y' }}</h4>
+                <h5 class="text-center">{{e.degree}} in {{ e.major }}</h5>
+                <!-- <h6 class="text-center"></h6> -->
                 <p class="text-center">{{e.summary}}</p>
             </div>
         </div>
@@ -83,7 +84,7 @@
         </div>
 
         <div class="modal fade modal-detail" id="exp-{{ e.start_date|date:'Y-n' }}">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">{{ e.title }}</h4>
@@ -117,14 +118,14 @@
         <div class="card bg-light">
             <div class="card-body text-center d-flex flex-column">
                 <h4 class="card-title">{{ p.title }}</h4>
-                {% with end_date=e.end_date|date:'M Y' %}
-                    <h6 class="card-text">{{ e.company.name }} | {{ e.start_date|date:'M Y' }} to {{ end_date|default:'Present' }}</h6>
+                {% with end_date=p.end_date|date:'M Y' %}
+                    <h6 class="card-text">{{ p.organization.name }} | {{ p.start_date|date:'M Y' }} to {{ end_date|default:'Present' }}</h6>
                 {% endwith %}
                 <btn class="btn btn-dark mt-auto" data-toggle="modal" data-target="#project-{{ p.start_date|date:'Y-n' }}">See more</btn>
             </div>
         </div>
         <div class="modal fade modal-detail" id="project-{{ p.start_date|date:'Y-n' }}">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">{{ p.title }}</h4>
