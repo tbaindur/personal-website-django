@@ -2,10 +2,6 @@ from django.db import models
 from tinymce.models import HTMLField
 from django.contrib.auth.models import User
 
-import os
-from django.conf import settings
-from django.core.files.storage import FileSystemStorage
-
 
 # Create your models here.
 
