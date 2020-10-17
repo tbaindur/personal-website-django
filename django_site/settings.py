@@ -156,6 +156,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # TinyMCE Config
+TINYMCE_JS_URL = 'https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js'
+TINYMCE_JS_ROOT = os.path.join(STATIC_URL, "tinymce")
+TINYMCE_COMPRESSOR = True
+
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,spellchecker,paste,searchreplace, media, image, imagetools, emoticons",
+    'menubar': 'false',
+    'toolbar1': "undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | outdent indent | media image emoticons",
+}
 
 # Heroku config
 django_heroku.settings(locals())
