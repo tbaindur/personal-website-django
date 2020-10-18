@@ -43,7 +43,8 @@ if DEBUG:
 INSTALLED_APPS = [
     'bio.apps.BioConfig',
     'blog.apps.BlogConfig',
-    'tinymce',
+    'ckeditor',
+    'ckeditor_uploader',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -155,7 +156,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# TinyMCE Config
+# CKEditor Config
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 # Heroku config
 django_heroku.settings(locals())

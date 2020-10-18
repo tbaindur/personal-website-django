@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "436613b8ad66d86591c5ff215150b25c4a25a2597189678aec8051f8085434e5"
+            "sha256": "e10645d4c2f738d3d832fdb1f69303c02edb8b0f0526fa85ab48fb155f596a7f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -102,6 +102,14 @@
             "index": "pypi",
             "version": "==3.1.2"
         },
+        "django-ckeditor": {
+            "hashes": [
+                "sha256:29fd1a333cb9741ac2c3fd4e427a5c00115ed33a2389716a09af7656022dcdde",
+                "sha256:cc2d377f1bdcd4ca1540caeebe85f7e2cd006198d57328ef6c718d3eaa5a0846"
+            ],
+            "index": "pypi",
+            "version": "==6.0.0"
+        },
         "django-heroku": {
             "hashes": [
                 "sha256:2bc690aab89eedbe01311752320a9a12e7548e3b0ed102681acc5736a41a4762",
@@ -109,6 +117,13 @@
             ],
             "index": "pypi",
             "version": "==0.3.1"
+        },
+        "django-js-asset": {
+            "hashes": [
+                "sha256:8ec12017f26eec524cab436c64ae73033368a372970af4cf42d9354fcb166bdd",
+                "sha256:c163ae80d2e0b22d8fb598047cd0dcef31f81830e127cfecae278ad574167260"
+            ],
+            "version": "==1.2.2"
         },
         "django-storages": {
             "hashes": [

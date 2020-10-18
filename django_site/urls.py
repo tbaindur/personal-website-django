@@ -22,8 +22,8 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('', include('bio.urls')),
-    path(r'^tinymce/', include('tinymce.urls')),
     path('ping/', views.ping, name='server-ping'),
 ]
 

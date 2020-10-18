@@ -8,13 +8,14 @@ pylint = "*"
 
 [packages]
 django = "*"
-django-tinymce = "*"
 pillow = "*"
 django-storages = "*"
 google-auth = "*"
 google-cloud-storage = "*"
 gunicorn = "*"
 django-heroku = "*"
+django-ckeditor = "*"
+django-tinymce = "*"
 
 [requires]
 python_version = "3.7"

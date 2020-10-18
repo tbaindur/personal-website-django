@@ -1,5 +1,6 @@
 from django.db import models
-from tinymce.models import HTMLField
+#from tinymce.models import HTMLField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 
 
@@ -9,7 +10,7 @@ class Intro(models.Model):
     user = models.OneToOneField(User, on_delete=models.PROTECT, default=1)
     name = models.CharField(max_length=40)
     headline = models.CharField(max_length=100)
-    summary = HTMLField()
+    summary = RichTextUploadingField()
     profile_pic = models.ImageField(default="intro_pics/default_profile_pic.jpg", upload_to='intro_pics')
     cover_pic = models.ImageField(null=True, upload_to='intro_pics')
     resume = models.FileField(upload_to='docs', null=True)
@@ -49,7 +50,7 @@ class Education(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
     summary = models.CharField(max_length=200, blank=True, null=True)
-    details = HTMLField()
+    details = RichTextUploadingField()
 
     def __str__(self):
         return self.degree + " in " + self.major + " from " + self.university.name
@@ -61,7 +62,7 @@ class Experience(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
     summary = models.CharField(max_length=200, blank=True, null=True)
-    details = HTMLField()
+    details = RichTextUploadingField()
 
     def __str__(self):
         return self.title + " @ " + self.company.name
@@ -73,7 +74,7 @@ class Project(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
     summary = models.CharField(max_length=200, blank=True, null=True)
-    details = HTMLField()
+    details = RichTextUploadingField()
 
     PROJECT_TYPE_CHOICES = [
         ('Academic', 'Academic'),
