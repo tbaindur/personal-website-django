@@ -129,18 +129,20 @@ USE_TZ = True
 
 # Django-storages configuration for Google Cloud Storage
 
-# Enable this config before final deployment
-
-#if DEBUG:
-#    GS_CREDENTIALS = service_account.Credentials.from_service_account_file(os.path.join(BASE_DIR, "gcs_keys.json"))
-#else:
 gs_service_account_credentials = json.loads(os.environ.get("GCS_SERVICE_ACCOUNT_CREDENTIALS"))
 GS_CREDENTIALS = service_account.Credentials.from_service_account_info(gs_service_account_credentials)
 
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_BUCKET_NAME = 'tejas-website'
+
+if DEBUG:
+    GS_BUCKET_NAME = os.environ.get("GCS_TEST_BUCKET_NAME")
+else:
+    GS_BUCKET_NAME = os.environ.get("GCS_BUCKET_NAME")
+
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
